@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aromas con Sentido</title>
+
+<style>
+:root {
+  --marfil: #FFF8F0;
+  --dorado: #C28A35;
+  --cafe: #421B12;
+  --rosa: #F5C7C5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #FFFDF9, #FFF0E2);
+  color: var(--cafe);
+  font-family: Arial, sans-serif;
+}
+
+main {
+  max-width: 780px;
+  margin: auto;
+  min-height: 100vh;
+  padding: 30px 18px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: clamp(23px, 5vw, 40px);
+  color: #8B5A22;
+  margin: 0;
+}
+
+header p {
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+section { display: none; }
+section.activa { display: block; }
+
+.hero {
+  text-align: center;
+  padding: 24px;
+  border: 1px solid var(--dorado);
+  background: #FFFDF9;
+  border-radius: 22px;
+}
+
+.hero img {
+  width: min(240px, 75%);
+  height: auto;
+  border-radius: 50%;
+}
+
+.lema {
+  text-align: center;
+  color: #9A6A31;
+  font: italic 20px Georgia, serif;
+}
+
+h2 {
+  text-align: center;
+  font-size: clamp(26px, 5vw, 38px);
+}
+
+.descripcion {
+  text-align: center;
+  line-height: 1.65;
+  color: #79523E;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  margin: 9px 0;
+  border: 1px solid var(--dorado);
+  border-radius: 12px;
+  background: #FFFDF9;
+  color: var(--cafe);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover, button:focus-visible {
+  background: #F5E0B9;
+}
+
+.principal {
+  background: var(--dorado);
+  color: #211108;
+  font-weight: bold;
+}
+
+.volver {
+  background: transparent;
+  border: 0;
+}
+
+.progreso {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #79523E;
+}
+
+.barra {
+  height: 5px;
+  background: #EAD8C3;
+  margin: 14px 0 25px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#avance {
+  height: 100%;
+  background: var(--dorado);
+}
+
+.chips {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chip {
+  background: #F5E0D9;
+  border-radius: 30px;
+  padding: 7px 11px;
+  font-size: 12px;
+}
+
+.tarjeta {
+  padding: 18px;
+  margin: 15px 0;
+  border: 1px solid #D6B782;
+  background: #FFFDF9;
+  border-radius: 15px;
+}
+
+.tarjeta h3 {
+  font-size: 24px;
+  margin: 5px 0;
+}
+
+.meta {
+  color: #8B5A22;
+  font-size: 13px;
+}
+
+.nota {
+  font-size: 12px;
+  color: #79523E;
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+  <h1>Aromas con Sentido</h1>
+  <p>TU IDENTIDAD OLFATIVA</p>
+</header>
+
+<section id="bienvenida" class="activa">
+  <div class="hero">
+    <img src="logo.jpeg" alt="Logo Aromas con Sentido">
+  </div>
+
+  <p class="lema">La esencia de ser tú</p>
+  <h2>Descubre tu esencia</h2>
+
+  <p class="descripcion">
+    Encuentra tres fragancias de nuestro catálogo
+    que conecten con tus preferencias.
+  </p>
+
+  <button class="principal" onclick="comenzar()">
+    Comenzar experiencia
+  </button>
+</section>
+
+<section id="cuestionario">
+  <div class="progreso">
+    <span id="pasoTexto"></span>
+    <span id="porcentaje"></span>
+  </div>
+
+  <div class="barra">
+    <div id="avance"></div>
+  </div>
+
+  <div id="selecciones" class="chips"></div>
+  <h2 id="pregunta"></h2>
+  <div id="opciones"></div>
+
+  <button class="volver" onclick="volver()">
+    ← Volver
+  </button>
+</section>
+
+<section id="final">
+  <h2>Tus tres fragancias</h2>
+  <p class="lema">La esencia de ser tú</p>
+
+  <div id="resumen" class="chips"></div>
+  <div id="recomendaciones"></div>
+
+  <p class="nota">
+    Los perfiles olfativos son orientativos.
+    Algunas referencias requieren confirmación
+    con el proveedor.
+  </p>
+
+  <button class="principal" onclick="reiniciar()">
+    Nueva experiencia
+  </button>
+</section>
+
+</main>
+
+<script>
+
+// CATÁLOGO DE 55 FRAGANCIAS
+// Datos orientativos del Excel suministrado.
+// Las referencias pendientes no se recomiendan
+// automáticamente hasta confirmar sus notas.
+
+const catalogo = [
+  ["Joy Of Living","ECO","Frutal cítrico dulce","Luminoso y jugoso"],
+  ["Zadous","ECO","Ámbar especiado dulce","Cálido y envolvente"],
+  ["Mamoun","ECO","Cítrico dulce especiado","Vibrante y goloso"],
+  ["Premium Tobacco","ECO","Ámbar especiado gourmand","Sofisticado y profundo"],
+  ["Top Gum","ECO","Frutal floral dulce","Divertido y juvenil"],
+  ["Thalia","ECO","Cítrico floral frutal","Fresco y espontáneo"],
+  ["Milo","ECO","Especiado amaderado dulce","Audaz y seductor"],
+  ["Just For Fun","ECO","","Pendiente de identificar"],
+  ["Lily","ECO","Cítrico frutal fresco","Fresco y mediterráneo"],
+  ["Mito White","ECO","Aromático especiado amaderado","Elegante y sobrio"],
+  ["Joujou","ECO","Floral especiado amaderado","Original y magnético"],
+  ["Elwin","ECO","","Pendiente de identificar"],
+  ["Frodis","ECO","Floral frutal dulce","Festivo y delicado"],
+  ["Radcliffe","ECO","Especiado ámbar amaderado","Rebelde y cálido"],
+  ["Idol","ECO","Frutal aromático fresco","Moderno y dinámico"],
+  ["Laura","ECO","Floral frutal fresco","Alegre y delicado"],
+  ["Katia Meow","ECO","Floral dulce gourmand","Tierno y coqueto"],
+  ["Kackoo","ECO","","Notas sin cotejar"],
+  ["Magical","ECO","Aromático dulce amaderado","Futurista y fresco"],
+  ["Rehka","ECO","Floral ámbar dulce","Sensual y luminoso"],
+  ["Juan Pablo","ECO","Aromático especiado dulce","Clásico y carismático"],
+  ["Isabella","ECO","Floral gourmand dulce","Dulce y elegante"],
+  ["Creamy Sky","ECO","Gourmand cremoso almizclado","Suave y soñador"],
+  ["Goddess","ECO","Floral tropical dulce","Cremoso y encantador"],
+  ["Erik Flame","ECO","Cítrico especiado amaderado","Intenso y vibrante"],
+  ["Brillo Morado","ECO","","Pendiente de identificar"],
+  ["Sunil","ECO","","Por confirmar"],
+  ["Deauville Lucky","ECO","Amaderado dulce frutal","Goloso y elegante"],
+
+  ["Wild Deep","STANDARD","Cítrico aromático especiado","Fresco y decidido"],
+  ["Vintage","STANDARD","","Notas sin cotejar"],
+  ["Carolo CH","STANDARD","Ámbar cuero amaderado","Clásico y distinguido"],
+  ["Goda","STANDARD","Floral frutal rosado","Romántico y refinado"],
+  ["Gian","STANDARD","Acuático cítrico aromático","Fresco y libre"],
+  ["Carol 212 VIP","STANDARD","","Versión por confirmar"],
+  ["Fred","STANDARD","Aromático dulce amaderado","Enérgico y seductor"],
+  ["Fendilla","STANDARD","Floral miel gourmand","Intenso y nocturno"],
+  ["White Metal","STANDARD","Cítrico verde almizclado","Limpio y sofisticado"],
+  ["Oriental Rougw","STANDARD","Ámbar amaderado especiado","Lujoso y envolvente"],
+  ["Planet New","STANDARD","","Versión por confirmar"],
+  ["Demetrius","STANDARD","Acuático cítrico amaderado","Deportivo y fresco"],
+  ["Carola Rose","STANDARD","Floral frutal fresco","Chic y alegre"],
+  ["Bryony","STANDARD","Floral frutal luminoso","Vital y femenino"],
+  ["Rija","STANDARD","","Por confirmar"],
+  ["Icaro","STANDARD","Acuático cítrico fresco","Sereno y limpio"],
+  ["Cotton Candy","STANDARD","Frutal gourmand dulce","Dulce y juguetón"],
+  ["Nathan Voyage","STANDARD","Acuático verde fresco","Ligero y aventurero"],
+  ["Hugo","STANDARD","Verde aromático fresco","Urbano y natural"],
+  ["Fantastic","STANDARD","Frutal gourmand dulce","Dulce y encantador"],
+  ["Adoro","STANDARD","Floral luminoso elegante","Radiante y sofisticado"],
+
+  ["Girl Of The Night","PREMIUM","Floral ámbar gourmand","Sensual y atrevido"],
+  ["Cristal Verso","PREMIUM","Floral frutal fresco","Delicado y brillante"],
+  ["Faraón","PREMIUM","Cuero amaderado aromático","Intenso y clásico"],
+  ["Moonwalter","PREMIUM","Cítrico amaderado fresco","Sereno y moderno"],
+  ["Christian Blue R","PREMIUM","Cítrico aromático amaderado","Sobrio y magnético"],
+  ["Brillo Belleza","PREMIUM","Floral vainilla suave","Romántico y luminoso"]
+];
+
+const preguntas = [
+  {
+    titulo: "¿Qué tipo de fragancia buscas?",
+    opciones: ["Hombre", "Mujer", "Unisex"]
+  },
+  {
+    titulo: "¿Cómo describes tu estilo?",
+    opciones: [
+      "Elegante", "Fresco", "Atrevido",
+      "Romántico", "Sofisticado"
+    ]
+  },
+  {
+    titulo: "¿Qué familia olfativa prefieres?",
+    opciones: [
+      "Cítrica", "Amaderada", "Floral",
+      "Dulce", "Oriental"
+    ]
+  },
+  {
+    titulo: "¿Qué intensidad prefieres?",
+    opciones: ["Suave", "Moderada", "Intensa"]
+  },
+  {
+    titulo: "¿Para qué ocasión buscas tu perfume?",
+    opciones: [
+      "Diario", "Oficina", "Citas",
+      "Eventos", "Noche"
+    ]
+  },
+  {
+    titulo: "¿Qué quieres transmitir?",
+    opciones: [
+      "Frescura", "Seguridad", "Sensualidad",
+      "Calidez", "Exclusividad"
+    ]
+  }
+];
+
+let paso = 0;
+let respuestas = [];
+
+function normal(texto) {
+  return (texto || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function mostrar(id) {
+  document.querySelectorAll("main section").forEach(
+    elemento => elemento.classList.remove("activa")
+  );
+  document.getElementById(id).classList.add("activa");
+}
+
+function mostrarChips(id) {
+  const contenedor = document.getElementById(id);
+  contenedor.replaceChildren();
+
+  respuestas.forEach(respuesta => {
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    chip.textContent = respuesta;
+    contenedor.appendChild(chip);
+  });
+}
+
+function comenzar() {
+  paso = 0;
+  respuestas = [];
+  mostrarPregunta();
+}
+
+function mostrarPregunta() {
+  if (paso >= preguntas.length) {
+    mostrarResultado();
+    return;
+  }
+
+  mostrar("cuestionario");
+
+  document.getElementById("pasoTexto").textContent =
+    `PASO ${paso + 1} DE ${preguntas.length}`;
+
+  document.getElementById("porcentaje").textContent =
+    Math.round((paso + 1) / preguntas.length * 100) + "%";
+
+  document.getElementById("avance").style.width =
+    ((paso + 1) / preguntas.length * 100) + "%";
+
+  document.getElementById("pregunta").textContent =
+    preguntas[paso].titulo;
+
+  const contenedor = document.getElementById("opciones");
+  contenedor.replaceChildren();
+
+  preguntas[paso].opciones.forEach(opcion => {
+    const boton = document.createElement("button");
+    boton.textContent = opcion;
+
+    boton.onclick = () => {
+      respuestas[paso] = opcion;
+      paso++;
+      mostrarPregunta();
+    };
+
+    contenedor.appendChild(boton);
+  });
+
+  mostrarChips("selecciones");
+}
+
+function volver() {
+  if (paso === 0) {
+    mostrar("bienvenida");
+  } else {
+    paso--;
+    respuestas = respuestas.slice(0, paso);
+    mostrarPregunta();
+  }
+}
+
+// REGLAS DE COMPATIBILIDAD
+
+const familias = {
+  "Cítrica": ["citrico", "fresco", "acuatico", "verde"],
+  "Amaderada": ["amaderado", "cuero", "aromatico"],
+  "Floral": ["floral", "rosado", "miel"],
+  "Dulce": ["dulce", "gourmand", "cremoso", "vainilla", "frutal"],
+  "Oriental": ["ambar", "especiado", "cuero"]
+};
+
+const estilos = {
+  "Elegante": ["elegante", "sofisticado", "refinado", "distinguido", "sobrio"],
+  "Fresco": ["fresco", "limpio", "ligero", "luminoso", "acuatico"],
+  "Atrevido": ["audaz", "intenso", "atrevido", "rebelde", "vibrante"],
+  "Romántico": ["romantico", "delicado", "floral", "suave"],
+  "Sofisticado": ["sofisticado", "lujoso", "profundo", "clasico"]
+};
+
+const emociones = {
+  "Frescura": ["fresco", "citrico", "acuatico", "verde", "limpio"],
+  "Seguridad": ["amaderado", "clasico", "sobrio", "elegante"],
+  "Sensualidad": ["sensual", "seductor", "ambar", "especiado", "gourmand"],
+  "Calidez": ["calido", "vainilla", "dulce", "cremoso", "ambar"],
+  "Exclusividad": ["lujoso", "sofisticado", "refinado", "distinguido"]
+};
+
+function contar(texto, palabras) {
+  return palabras.reduce(
+    (total, palabra) =>
+      total + (texto.includes(normal(palabra)) ? 1 : 0),
+    0
+  );
+}
+
+function puntuar(perfume) {
+  const familia = normal(perfume[2]);
+  const perfil = normal(perfume[2] + " " + perfume[3]);
+
+  let puntos = 0;
+
+  puntos += contar(
+    familia, familias[respuestas[2]]
+  ) * 5;
+
+  puntos += contar(
+    perfil, estilos[respuestas[1]]
+  ) * 2;
+
+  puntos += contar(
+    perfil, emociones[respuestas[5]]
+  ) * 2;
+
+  const fuertes = contar(perfil, [
+    "intenso", "profundo", "cuero",
+    "especiado", "ambar", "nocturno"
+  ]);
+
+  const suaves = contar(perfil, [
+    "suave", "ligero", "delicado",
+    "fresco", "limpio"
+  ]);
+
+  if (respuestas[3] === "Intensa") {
+    puntos += fuertes * 2;
+  } else if (respuestas[3] === "Suave") {
+    puntos += suaves * 2;
+  } else {
+    puntos += 2;
+  }
+
+  if (["Diario", "Oficina"].includes(respuestas[4])) {
+    puntos += suaves * 2;
+  } else {
+    puntos += fuertes * 2;
+  }
+
+  return puntos;
+}
+
+function mostrarResultado() {
+  mostrar("final");
+  mostrarChips("resumen");
+
+  const disponibles = catalogo
+    .filter(perfume => perfume[2] !== "");
+
+  const mejores = disponibles
+    .map((perfume, indice) => ({
+      perfume,
+      indice,
+      puntos: puntuar(perfume)
+    }))
+    .sort((a, b) =>
+      b.puntos - a.puntos || a.indice - b.indice
+    )
+    .slice(0, 3);
+
+  const contenedor =
+    document.getElementById("recomendaciones");
+
+  contenedor.replaceChildren();
+
+  mejores.forEach((resultado, indice) => {
+    const perfume = resultado.perfume;
+
+    const tarjeta = document.createElement("article");
+    tarjeta.className = "tarjeta";
+
+    const titulo = document.createElement("h3");
+    titulo.textContent =
+      `${indice + 1}. ${perfume[0]}`;
+
+    const meta = document.createElement("p");
+    meta.className = "meta";
+    meta.textContent =
+      `${perfume[1]} · ${perfume[2]}`;
+
+    const descripcion = document.createElement("p");
+    descripcion.textContent = perfume[3];
+
+    const motivo = document.createElement("p");
+    motivo.textContent =
+      "Esta fragancia presenta afinidad con " +
+      "las preferencias que seleccionaste " +
+      "durante tu experiencia olfativa.";
+
+    tarjeta.appendChild(titulo);
+    tarjeta.appendChild(meta);
+    tarjeta.appendChild(descripcion);
+    tarjeta.appendChild(motivo);
+
+    contenedor.appendChild(tarjeta);
+  });
+}
+
+function reiniciar() {
+  paso = 0;
+  respuestas = [];
+  mostrar("bienvenida");
+}
+
+</script>
+</body>
+</html>
