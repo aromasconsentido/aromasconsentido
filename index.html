@@ -5,172 +5,134 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aromas con Sentido</title>
-
 <style>
 :root {
-  --marfil: #FFF8F0;
-  --dorado: #C28A35;
-  --cafe: #421B12;
-  --rosa: #F5C7C5;
+  --marfil:#FFF8F0;
+  --dorado:#C28A35;
+  --cafe:#421B12;
+  --rosa:#F5C7C5;
 }
-
-* { box-sizing: border-box; }
-
+* {box-sizing:border-box}
 body {
-  margin: 0;
-  background: linear-gradient(135deg, #FFFDF9, #FFF0E2);
-  color: var(--cafe);
-  font-family: Arial, sans-serif;
+  margin:0;
+  background:linear-gradient(135deg,#FFFDF9,#FFF0E2);
+  color:var(--cafe);
+  font-family:Arial,sans-serif;
 }
-
 main {
-  max-width: 780px;
-  margin: auto;
-  min-height: 100vh;
-  padding: 30px 18px;
+  max-width:780px;
+  margin:auto;
+  min-height:100vh;
+  padding:30px 18px;
 }
-
-header {
-  text-align: center;
-  margin-bottom: 22px;
-}
-
-h1, h2, h3 {
-  font-family: Georgia, serif;
-  font-weight: normal;
-}
-
+header {text-align:center;margin-bottom:22px}
+h1,h2,h3 {font-family:Georgia,serif;font-weight:normal}
 h1 {
-  font-size: clamp(23px, 5vw, 40px);
-  color: #8B5A22;
-  margin: 0;
+  font-size:clamp(23px,5vw,40px);
+  color:#8B5A22;
+  margin:0;
 }
-
-header p {
-  font-size: 11px;
-  letter-spacing: 3px;
-}
-
-section { display: none; }
-section.activa { display: block; }
-
+header p {font-size:11px;letter-spacing:3px}
+section {display:none}
+section.activa {display:block}
 .hero {
-  text-align: center;
-  padding: 24px;
-  border: 1px solid var(--dorado);
-  background: #FFFDF9;
-  border-radius: 22px;
+  text-align:center;
+  padding:24px;
+  border:1px solid var(--dorado);
+  background:#FFFDF9;
+  border-radius:22px;
 }
-
 .hero img {
-  width: min(240px, 75%);
-  height: auto;
-  border-radius: 50%;
+  width:min(240px,75%);
+  height:auto;
+  border-radius:50%;
 }
-
 .lema {
-  text-align: center;
-  color: #9A6A31;
-  font: italic 20px Georgia, serif;
+  text-align:center;
+  color:#9A6A31;
+  font:italic 20px Georgia,serif;
 }
-
-h2 {
-  text-align: center;
-  font-size: clamp(26px, 5vw, 38px);
-}
-
+h2 {text-align:center;font-size:clamp(26px,5vw,38px)}
 .descripcion {
-  text-align: center;
-  line-height: 1.65;
-  color: #79523E;
+  text-align:center;
+  line-height:1.65;
+  color:#79523E;
 }
-
 button {
-  width: 100%;
-  padding: 16px;
-  margin: 9px 0;
-  border: 1px solid var(--dorado);
-  border-radius: 12px;
-  background: #FFFDF9;
-  color: var(--cafe);
-  font-size: 16px;
-  cursor: pointer;
+  width:100%;
+  padding:16px;
+  margin:9px 0;
+  border:1px solid var(--dorado);
+  border-radius:12px;
+  background:#FFFDF9;
+  color:var(--cafe);
+  font-size:16px;
+  cursor:pointer;
 }
-
-button:hover, button:focus-visible {
-  background: #F5E0B9;
-}
-
+button:hover,button:focus-visible {background:#F5E0B9}
+button:disabled {opacity:.6;cursor:wait}
 .principal {
-  background: var(--dorado);
-  color: #211108;
-  font-weight: bold;
+  background:var(--dorado);
+  color:#211108;
+  font-weight:bold;
 }
-
-.volver {
-  background: transparent;
-  border: 0;
-}
-
+.volver {background:transparent;border:0}
 .progreso {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  color: #79523E;
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  color:#79523E;
 }
-
 .barra {
-  height: 5px;
-  background: #EAD8C3;
-  margin: 14px 0 25px;
-  border-radius: 5px;
-  overflow: hidden;
+  height:5px;
+  background:#EAD8C3;
+  margin:14px 0 25px;
+  border-radius:5px;
+  overflow:hidden;
 }
-
-#avance {
-  height: 100%;
-  background: var(--dorado);
-}
-
+#avance {height:100%;background:var(--dorado)}
 .chips {
-  display: flex;
-  gap: 7px;
-  flex-wrap: wrap;
-  justify-content: center;
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
-
 .chip {
-  background: #F5E0D9;
-  border-radius: 30px;
-  padding: 7px 11px;
-  font-size: 12px;
+  background:#F5E0D9;
+  border-radius:30px;
+  padding:7px 11px;
+  font-size:12px;
 }
-
 .tarjeta {
-  padding: 18px;
-  margin: 15px 0;
-  border: 1px solid #D6B782;
-  background: #FFFDF9;
-  border-radius: 15px;
+  padding:18px;
+  margin:15px 0;
+  border:1px solid #D6B782;
+  background:#FFFDF9;
+  border-radius:15px;
 }
-
-.tarjeta h3 {
-  font-size: 24px;
-  margin: 5px 0;
+.tarjeta h3 {font-size:24px;margin:5px 0}
+.meta {color:#8B5A22;font-size:13px}
+.nota {font-size:12px;color:#79523E}
+.campo {
+  display:block;
+  width:100%;
+  padding:14px;
+  margin:9px 0 18px;
+  border:1px solid #D6B782;
+  border-radius:10px;
+  font-size:16px;
 }
-
-.meta {
-  color: #8B5A22;
-  font-size: 13px;
+.consentimiento {
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  line-height:1.5;
+  margin:16px 0;
 }
-
-.nota {
-  font-size: 12px;
-  color: #79523E;
-}
+.consentimiento input {margin-top:5px;flex-shrink:0}
+.mensaje {font-size:14px;color:#79523E}
 </style>
 </head>
-
 <body>
 <main>
 
@@ -183,18 +145,48 @@ button:hover, button:focus-visible {
   <div class="hero">
     <img src="logo.jpeg" alt="Logo Aromas con Sentido">
   </div>
-
   <p class="lema">La esencia de ser tú</p>
   <h2>Descubre tu esencia</h2>
-
   <p class="descripcion">
     Encuentra tres fragancias de nuestro catálogo
     que conecten con tus preferencias.
   </p>
-
   <button class="principal" onclick="comenzar()">
     Comenzar experiencia
   </button>
+</section>
+
+<section id="registro">
+  <h2>Antes de comenzar</h2>
+  <p class="descripcion">
+    Cuéntanos cómo podemos llamarte y contactarte.
+  </p>
+  <form id="formRegistro" onsubmit="registrar(event)">
+    <label for="nombre">Nombre</label>
+    <input class="campo" id="nombre" name="nombre"
+      required maxlength="100" autocomplete="name">
+
+    <label for="whatsapp">WhatsApp</label>
+    <input class="campo" id="whatsapp" name="whatsapp"
+      type="tel" required minlength="7" maxlength="20"
+      autocomplete="tel" placeholder="Ej. 3001234567">
+
+    <label class="consentimiento">
+      <input id="autorizado" type="checkbox" required>
+      <span>
+        Autorizo a Aromas con Sentido a almacenar mi
+        nombre y WhatsApp para gestionar esta experiencia
+        y contactarme sobre ella. Puedo solicitar la
+        eliminación de mis datos por los canales de
+        atención de la marca.
+      </span>
+    </label>
+
+    <p id="errorRegistro" class="mensaje" role="status"></p>
+    <button class="principal" id="botonRegistro" type="submit">
+      Continuar
+    </button>
+  </form>
 </section>
 
 <section id="cuestionario">
@@ -202,33 +194,57 @@ button:hover, button:focus-visible {
     <span id="pasoTexto"></span>
     <span id="porcentaje"></span>
   </div>
-
-  <div class="barra">
-    <div id="avance"></div>
-  </div>
-
+  <div class="barra"><div id="avance"></div></div>
   <div id="selecciones" class="chips"></div>
   <h2 id="pregunta"></h2>
   <div id="opciones"></div>
-
-  <button class="volver" onclick="volver()">
-    ← Volver
-  </button>
+  <button class="volver" onclick="volver()">← Volver</button>
 </section>
 
 <section id="final">
   <h2>Tus tres fragancias</h2>
   <p class="lema">La esencia de ser tú</p>
-
   <div id="resumen" class="chips"></div>
   <div id="recomendaciones"></div>
-
   <p class="nota">
     Los perfiles olfativos son orientativos.
     Algunas referencias requieren confirmación
     con el proveedor.
   </p>
+  <button class="principal" onclick="mostrar('cumpleanos')">
+    Continuar
+  </button>
+</section>
 
+<section id="cumpleanos">
+  <h2>¿Cuándo es tu cumpleaños?</h2>
+  <p class="descripcion">
+    Es opcional. Nos encantaría felicitarte en tu día especial.
+  </p>
+  <label for="nacimiento">Fecha de nacimiento</label>
+  <input class="campo" id="nacimiento" type="date">
+
+  <label class="consentimiento">
+    <input id="autorizaCumple" type="checkbox">
+    <span>
+      Autorizo guardar mi fecha de nacimiento y recibir
+      felicitaciones o detalles de cumpleaños a través
+      de mi WhatsApp.
+    </span>
+  </label>
+
+  <p id="errorCumple" class="mensaje" role="status"></p>
+  <button class="principal" id="botonCumple"
+    onclick="guardarCumpleanos()">Guardar y finalizar</button>
+  <button onclick="mostrar('gracias')">Omitir</button>
+</section>
+
+<section id="gracias">
+  <h2>¡Gracias por vivir esta experiencia!</h2>
+  <p class="lema">La esencia de ser tú</p>
+  <p class="descripcion">
+    Esperamos que encuentres una fragancia que conecte contigo.
+  </p>
   <button class="principal" onclick="reiniciar()">
     Nueva experiencia
   </button>
@@ -237,179 +253,240 @@ button:hover, button:focus-visible {
 </main>
 
 <script>
-
-// CATÁLOGO DE 55 FRAGANCIAS
-// Datos orientativos del Excel suministrado.
-// Las referencias pendientes no se recomiendan
-// automáticamente hasta confirmar sus notas.
-
 const catalogo = [
-  ["Joy Of Living","ECO","Frutal cítrico dulce","Luminoso y jugoso"],
-  ["Zadous","ECO","Ámbar especiado dulce","Cálido y envolvente"],
-  ["Mamoun","ECO","Cítrico dulce especiado","Vibrante y goloso"],
-  ["Premium Tobacco","ECO","Ámbar especiado gourmand","Sofisticado y profundo"],
-  ["Top Gum","ECO","Frutal floral dulce","Divertido y juvenil"],
-  ["Thalia","ECO","Cítrico floral frutal","Fresco y espontáneo"],
-  ["Milo","ECO","Especiado amaderado dulce","Audaz y seductor"],
-  ["Just For Fun","ECO","","Pendiente de identificar"],
-  ["Lily","ECO","Cítrico frutal fresco","Fresco y mediterráneo"],
-  ["Mito White","ECO","Aromático especiado amaderado","Elegante y sobrio"],
-  ["Joujou","ECO","Floral especiado amaderado","Original y magnético"],
-  ["Elwin","ECO","","Pendiente de identificar"],
-  ["Frodis","ECO","Floral frutal dulce","Festivo y delicado"],
-  ["Radcliffe","ECO","Especiado ámbar amaderado","Rebelde y cálido"],
-  ["Idol","ECO","Frutal aromático fresco","Moderno y dinámico"],
-  ["Laura","ECO","Floral frutal fresco","Alegre y delicado"],
-  ["Katia Meow","ECO","Floral dulce gourmand","Tierno y coqueto"],
-  ["Kackoo","ECO","","Notas sin cotejar"],
-  ["Magical","ECO","Aromático dulce amaderado","Futurista y fresco"],
-  ["Rehka","ECO","Floral ámbar dulce","Sensual y luminoso"],
-  ["Juan Pablo","ECO","Aromático especiado dulce","Clásico y carismático"],
-  ["Isabella","ECO","Floral gourmand dulce","Dulce y elegante"],
-  ["Creamy Sky","ECO","Gourmand cremoso almizclado","Suave y soñador"],
-  ["Goddess","ECO","Floral tropical dulce","Cremoso y encantador"],
-  ["Erik Flame","ECO","Cítrico especiado amaderado","Intenso y vibrante"],
-  ["Brillo Morado","ECO","","Pendiente de identificar"],
-  ["Sunil","ECO","","Por confirmar"],
-  ["Deauville Lucky","ECO","Amaderado dulce frutal","Goloso y elegante"],
-
-  ["Wild Deep","STANDARD","Cítrico aromático especiado","Fresco y decidido"],
-  ["Vintage","STANDARD","","Notas sin cotejar"],
-  ["Carolo CH","STANDARD","Ámbar cuero amaderado","Clásico y distinguido"],
-  ["Goda","STANDARD","Floral frutal rosado","Romántico y refinado"],
-  ["Gian","STANDARD","Acuático cítrico aromático","Fresco y libre"],
-  ["Carol 212 VIP","STANDARD","","Versión por confirmar"],
-  ["Fred","STANDARD","Aromático dulce amaderado","Enérgico y seductor"],
-  ["Fendilla","STANDARD","Floral miel gourmand","Intenso y nocturno"],
-  ["White Metal","STANDARD","Cítrico verde almizclado","Limpio y sofisticado"],
-  ["Oriental Rougw","STANDARD","Ámbar amaderado especiado","Lujoso y envolvente"],
-  ["Planet New","STANDARD","","Versión por confirmar"],
-  ["Demetrius","STANDARD","Acuático cítrico amaderado","Deportivo y fresco"],
-  ["Carola Rose","STANDARD","Floral frutal fresco","Chic y alegre"],
-  ["Bryony","STANDARD","Floral frutal luminoso","Vital y femenino"],
-  ["Rija","STANDARD","","Por confirmar"],
-  ["Icaro","STANDARD","Acuático cítrico fresco","Sereno y limpio"],
-  ["Cotton Candy","STANDARD","Frutal gourmand dulce","Dulce y juguetón"],
-  ["Nathan Voyage","STANDARD","Acuático verde fresco","Ligero y aventurero"],
-  ["Hugo","STANDARD","Verde aromático fresco","Urbano y natural"],
-  ["Fantastic","STANDARD","Frutal gourmand dulce","Dulce y encantador"],
-  ["Adoro","STANDARD","Floral luminoso elegante","Radiante y sofisticado"],
-
-  ["Girl Of The Night","PREMIUM","Floral ámbar gourmand","Sensual y atrevido"],
-  ["Cristal Verso","PREMIUM","Floral frutal fresco","Delicado y brillante"],
-  ["Faraón","PREMIUM","Cuero amaderado aromático","Intenso y clásico"],
-  ["Moonwalter","PREMIUM","Cítrico amaderado fresco","Sereno y moderno"],
-  ["Christian Blue R","PREMIUM","Cítrico aromático amaderado","Sobrio y magnético"],
-  ["Brillo Belleza","PREMIUM","Floral vainilla suave","Romántico y luminoso"]
+["Joy Of Living","ECO","Frutal cítrico dulce","Luminoso y jugoso"],
+["Zadous","ECO","Ámbar especiado dulce","Cálido y envolvente"],
+["Mamoun","ECO","Cítrico dulce especiado","Vibrante y goloso"],
+["Premium Tobacco","ECO","Ámbar especiado gourmand","Sofisticado y profundo"],
+["Top Gum","ECO","Frutal floral dulce","Divertido y juvenil"],
+["Thalia","ECO","Cítrico floral frutal","Fresco y espontáneo"],
+["Milo","ECO","Especiado amaderado dulce","Audaz y seductor"],
+["Just For Fun","ECO","","Pendiente de identificar"],
+["Lily","ECO","Cítrico frutal fresco","Fresco y mediterráneo"],
+["Mito White","ECO","Aromático especiado amaderado","Elegante y sobrio"],
+["Joujou","ECO","Floral especiado amaderado","Original y magnético"],
+["Elwin","ECO","","Pendiente de identificar"],
+["Frodis","ECO","Floral frutal dulce","Festivo y delicado"],
+["Radcliffe","ECO","Especiado ámbar amaderado","Rebelde y cálido"],
+["Idol","ECO","Frutal aromático fresco","Moderno y dinámico"],
+["Laura","ECO","Floral frutal fresco","Alegre y delicado"],
+["Katia Meow","ECO","Floral dulce gourmand","Tierno y coqueto"],
+["Kackoo","ECO","","Notas sin cotejar"],
+["Magical","ECO","Aromático dulce amaderado","Futurista y fresco"],
+["Rehka","ECO","Floral ámbar dulce","Sensual y luminoso"],
+["Juan Pablo","ECO","Aromático especiado dulce","Clásico y carismático"],
+["Isabella","ECO","Floral gourmand dulce","Dulce y elegante"],
+["Creamy Sky","ECO","Gourmand cremoso almizclado","Suave y soñador"],
+["Goddess","ECO","Floral tropical dulce","Cremoso y encantador"],
+["Erik Flame","ECO","Cítrico especiado amaderado","Intenso y vibrante"],
+["Brillo Morado","ECO","","Pendiente de identificar"],
+["Sunil","ECO","","Por confirmar"],
+["Deauville Lucky","ECO","Amaderado dulce frutal","Goloso y elegante"],
+["Wild Deep","STANDARD","Cítrico aromático especiado","Fresco y decidido"],
+["Vintage","STANDARD","","Notas sin cotejar"],
+["Carolo CH","STANDARD","Ámbar cuero amaderado","Clásico y distinguido"],
+["Goda","STANDARD","Floral frutal rosado","Romántico y refinado"],
+["Gian","STANDARD","Acuático cítrico aromático","Fresco y libre"],
+["Carol 212 VIP","STANDARD","","Versión por confirmar"],
+["Fred","STANDARD","Aromático dulce amaderado","Enérgico y seductor"],
+["Fendilla","STANDARD","Floral miel gourmand","Intenso y nocturno"],
+["White Metal","STANDARD","Cítrico verde almizclado","Limpio y sofisticado"],
+["Oriental Rougw","STANDARD","Ámbar amaderado especiado","Lujoso y envolvente"],
+["Planet New","STANDARD","","Versión por confirmar"],
+["Demetrius","STANDARD","Acuático cítrico amaderado","Deportivo y fresco"],
+["Carola Rose","STANDARD","Floral frutal fresco","Chic y alegre"],
+["Bryony","STANDARD","Floral frutal luminoso","Vital y femenino"],
+["Rija","STANDARD","","Por confirmar"],
+["Icaro","STANDARD","Acuático cítrico fresco","Sereno y limpio"],
+["Cotton Candy","STANDARD","Frutal gourmand dulce","Dulce y juguetón"],
+["Nathan Voyage","STANDARD","Acuático verde fresco","Ligero y aventurero"],
+["Hugo","STANDARD","Verde aromático fresco","Urbano y natural"],
+["Fantastic","STANDARD","Frutal gourmand dulce","Dulce y encantador"],
+["Adoro","STANDARD","Floral luminoso elegante","Radiante y sofisticado"],
+["Girl Of The Night","PREMIUM","Floral ámbar gourmand","Sensual y atrevido"],
+["Cristal Verso","PREMIUM","Floral frutal fresco","Delicado y brillante"],
+["Faraón","PREMIUM","Cuero amaderado aromático","Intenso y clásico"],
+["Moonwalter","PREMIUM","Cítrico amaderado fresco","Sereno y moderno"],
+["Christian Blue R","PREMIUM","Cítrico aromático amaderado","Sobrio y magnético"],
+["Brillo Belleza","PREMIUM","Floral vainilla suave","Romántico y luminoso"]
 ];
 
 const preguntas = [
   {
-    titulo: "¿Qué tipo de fragancia buscas?",
-    opciones: ["Hombre", "Mujer", "Unisex"]
+    titulo:"¿Qué tipo de fragancia buscas?",
+    opciones:["Hombre","Mujer","Unisex"]
   },
   {
-    titulo: "¿Cómo describes tu estilo?",
-    opciones: [
-      "Elegante", "Fresco", "Atrevido",
-      "Romántico", "Sofisticado"
-    ]
+    titulo:"¿Cómo describes tu estilo?",
+    opciones:["Elegante","Fresco","Atrevido","Romántico","Sofisticado"]
   },
   {
-    titulo: "¿Qué familia olfativa prefieres?",
-    opciones: [
-      "Cítrica", "Amaderada", "Floral",
-      "Dulce", "Oriental"
-    ]
+    titulo:"¿Qué familia olfativa prefieres?",
+    opciones:["Cítrica","Amaderada","Floral","Dulce","Oriental"]
   },
   {
-    titulo: "¿Qué intensidad prefieres?",
-    opciones: ["Suave", "Moderada", "Intensa"]
+    titulo:"¿Qué intensidad prefieres?",
+    opciones:["Suave","Moderada","Intensa"]
   },
   {
-    titulo: "¿Para qué ocasión buscas tu perfume?",
-    opciones: [
-      "Diario", "Oficina", "Citas",
-      "Eventos", "Noche"
-    ]
+    titulo:"¿Para qué ocasión buscas tu perfume?",
+    opciones:["Diario","Oficina","Citas","Eventos","Noche"]
   },
   {
-    titulo: "¿Qué quieres transmitir?",
-    opciones: [
-      "Frescura", "Seguridad", "Sensualidad",
-      "Calidez", "Exclusividad"
-    ]
+    titulo:"¿Qué quieres transmitir?",
+    opciones:["Frescura","Seguridad","Sensualidad","Calidez","Exclusividad"]
   }
 ];
 
-let paso = 0;
-let respuestas = [];
+let paso=0;
+let respuestas=[];
+let clienteId="";
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbzL9wucIeVzA8HE_ztjja6RIHm2b8nWchAiNmeGTmAleZRCq03VnNq6DIeUF60AHa-R/exec";
+
+async function enviar(datos) {
+  await fetch(SCRIPT_URL,{
+    method:"POST",
+    mode:"no-cors",
+    headers:{"Content-Type":"application/x-www-form-urlencoded"},
+    body:new URLSearchParams(datos)
+  });
+}
+
+async function registrar(event) {
+  event.preventDefault();
+  const nombre=document.getElementById("nombre").value.trim();
+  const whatsapp=document.getElementById("whatsapp").value.trim();
+  const error=document.getElementById("errorRegistro");
+  const boton=document.getElementById("botonRegistro");
+
+  error.textContent="";
+
+  if (!nombre ||
+      !/^\+?[0-9\s()-]{7,20}$/.test(whatsapp) ||
+      !document.getElementById("autorizado").checked) {
+    error.textContent="Revisa el nombre, el WhatsApp y la autorización.";
+    return;
+  }
+
+  clienteId=crypto.randomUUID();
+  boton.disabled=true;
+
+  try {
+    await enviar({
+      accion:"registro",
+      clienteId,
+      nombre,
+      whatsapp,
+      autorizado:"true"
+    });
+    paso=0;
+    respuestas=[];
+    mostrarPregunta();
+  } catch(e) {
+    error.textContent="No pudimos enviar el registro. Revisa tu conexión.";
+  } finally {
+    boton.disabled=false;
+  }
+}
+
+async function guardarCumpleanos() {
+  const nacimiento=document.getElementById("nacimiento").value;
+  const autoriza=document.getElementById("autorizaCumple").checked;
+  const error=document.getElementById("errorCumple");
+  const boton=document.getElementById("botonCumple");
+
+  error.textContent="";
+
+  if (!nacimiento || !autoriza) {
+    error.textContent=
+      "Selecciona la fecha y autoriza su uso, o elige Omitir.";
+    return;
+  }
+
+  if (nacimiento>new Date().toISOString().slice(0,10)) {
+    error.textContent="La fecha no puede estar en el futuro.";
+    return;
+  }
+
+  boton.disabled=true;
+  try {
+    await enviar({
+      accion:"cumpleanos",
+      clienteId,
+      nacimiento,
+      autorizaCumple:"true"
+    });
+    mostrar("gracias");
+  } catch(e) {
+    error.textContent="No pudimos enviar la fecha. Intenta de nuevo.";
+  } finally {
+    boton.disabled=false;
+  }
+}
 
 function normal(texto) {
-  return (texto || "")
+  return (texto||"")
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+    .replace(/[\u0300-\u036f]/g,"");
 }
 
 function mostrar(id) {
   document.querySelectorAll("main section").forEach(
-    elemento => elemento.classList.remove("activa")
+    elemento=>elemento.classList.remove("activa")
   );
   document.getElementById(id).classList.add("activa");
 }
 
 function mostrarChips(id) {
-  const contenedor = document.getElementById(id);
+  const contenedor=document.getElementById(id);
   contenedor.replaceChildren();
 
-  respuestas.forEach(respuesta => {
-    const chip = document.createElement("span");
-    chip.className = "chip";
-    chip.textContent = respuesta;
+  respuestas.forEach(respuesta=>{
+    const chip=document.createElement("span");
+    chip.className="chip";
+    chip.textContent=respuesta;
     contenedor.appendChild(chip);
   });
 }
 
 function comenzar() {
-  paso = 0;
-  respuestas = [];
-  mostrarPregunta();
+  mostrar("registro");
 }
 
 function mostrarPregunta() {
-  if (paso >= preguntas.length) {
+  if (paso>=preguntas.length) {
     mostrarResultado();
     return;
   }
 
   mostrar("cuestionario");
 
-  document.getElementById("pasoTexto").textContent =
-    `PASO ${paso + 1} DE ${preguntas.length}`;
+  document.getElementById("pasoTexto").textContent=
+    `PASO ${paso+1} DE ${preguntas.length}`;
 
-  document.getElementById("porcentaje").textContent =
-    Math.round((paso + 1) / preguntas.length * 100) + "%";
+  document.getElementById("porcentaje").textContent=
+    Math.round((paso+1)/preguntas.length*100)+"%";
 
-  document.getElementById("avance").style.width =
-    ((paso + 1) / preguntas.length * 100) + "%";
+  document.getElementById("avance").style.width=
+    ((paso+1)/preguntas.length*100)+"%";
 
-  document.getElementById("pregunta").textContent =
+  document.getElementById("pregunta").textContent=
     preguntas[paso].titulo;
 
-  const contenedor = document.getElementById("opciones");
+  const contenedor=document.getElementById("opciones");
   contenedor.replaceChildren();
 
-  preguntas[paso].opciones.forEach(opcion => {
-    const boton = document.createElement("button");
-    boton.textContent = opcion;
-
-    boton.onclick = () => {
-      respuestas[paso] = opcion;
+  preguntas[paso].opciones.forEach(opcion=>{
+    const boton=document.createElement("button");
+    boton.textContent=opcion;
+    boton.onclick=()=>{
+      respuestas[paso]=opcion;
       paso++;
       mostrarPregunta();
     };
-
     contenedor.appendChild(boton);
   });
 
@@ -417,89 +494,76 @@ function mostrarPregunta() {
 }
 
 function volver() {
-  if (paso === 0) {
-    mostrar("bienvenida");
+  if (paso===0) {
+    mostrar("registro");
   } else {
     paso--;
-    respuestas = respuestas.slice(0, paso);
+    respuestas=respuestas.slice(0,paso);
     mostrarPregunta();
   }
 }
 
-// REGLAS DE COMPATIBILIDAD
-
-const familias = {
-  "Cítrica": ["citrico", "fresco", "acuatico", "verde"],
-  "Amaderada": ["amaderado", "cuero", "aromatico"],
-  "Floral": ["floral", "rosado", "miel"],
-  "Dulce": ["dulce", "gourmand", "cremoso", "vainilla", "frutal"],
-  "Oriental": ["ambar", "especiado", "cuero"]
+const familias={
+  "Cítrica":["citrico","fresco","acuatico","verde"],
+  "Amaderada":["amaderado","cuero","aromatico"],
+  "Floral":["floral","rosado","miel"],
+  "Dulce":["dulce","gourmand","cremoso","vainilla","frutal"],
+  "Oriental":["ambar","especiado","cuero"]
 };
 
-const estilos = {
-  "Elegante": ["elegante", "sofisticado", "refinado", "distinguido", "sobrio"],
-  "Fresco": ["fresco", "limpio", "ligero", "luminoso", "acuatico"],
-  "Atrevido": ["audaz", "intenso", "atrevido", "rebelde", "vibrante"],
-  "Romántico": ["romantico", "delicado", "floral", "suave"],
-  "Sofisticado": ["sofisticado", "lujoso", "profundo", "clasico"]
+const estilos={
+  "Elegante":["elegante","sofisticado","refinado","distinguido","sobrio"],
+  "Fresco":["fresco","limpio","ligero","luminoso","acuatico"],
+  "Atrevido":["audaz","intenso","atrevido","rebelde","vibrante"],
+  "Romántico":["romantico","delicado","floral","suave"],
+  "Sofisticado":["sofisticado","lujoso","profundo","clasico"]
 };
 
-const emociones = {
-  "Frescura": ["fresco", "citrico", "acuatico", "verde", "limpio"],
-  "Seguridad": ["amaderado", "clasico", "sobrio", "elegante"],
-  "Sensualidad": ["sensual", "seductor", "ambar", "especiado", "gourmand"],
-  "Calidez": ["calido", "vainilla", "dulce", "cremoso", "ambar"],
-  "Exclusividad": ["lujoso", "sofisticado", "refinado", "distinguido"]
+const emociones={
+  "Frescura":["fresco","citrico","acuatico","verde","limpio"],
+  "Seguridad":["amaderado","clasico","sobrio","elegante"],
+  "Sensualidad":["sensual","seductor","ambar","especiado","gourmand"],
+  "Calidez":["calido","vainilla","dulce","cremoso","ambar"],
+  "Exclusividad":["lujoso","sofisticado","refinado","distinguido"]
 };
 
-function contar(texto, palabras) {
+function contar(texto,palabras) {
   return palabras.reduce(
-    (total, palabra) =>
-      total + (texto.includes(normal(palabra)) ? 1 : 0),
+    (total,palabra)=>
+      total+(texto.includes(normal(palabra))?1:0),
     0
   );
 }
 
 function puntuar(perfume) {
-  const familia = normal(perfume[2]);
-  const perfil = normal(perfume[2] + " " + perfume[3]);
+  const familia=normal(perfume[2]);
+  const perfil=normal(perfume[2]+" "+perfume[3]);
+  let puntos=0;
 
-  let puntos = 0;
+  puntos+=contar(familia,familias[respuestas[2]])*5;
+  puntos+=contar(perfil,estilos[respuestas[1]])*2;
+  puntos+=contar(perfil,emociones[respuestas[5]])*2;
 
-  puntos += contar(
-    familia, familias[respuestas[2]]
-  ) * 5;
-
-  puntos += contar(
-    perfil, estilos[respuestas[1]]
-  ) * 2;
-
-  puntos += contar(
-    perfil, emociones[respuestas[5]]
-  ) * 2;
-
-  const fuertes = contar(perfil, [
-    "intenso", "profundo", "cuero",
-    "especiado", "ambar", "nocturno"
+  const fuertes=contar(perfil,[
+    "intenso","profundo","cuero","especiado","ambar","nocturno"
   ]);
 
-  const suaves = contar(perfil, [
-    "suave", "ligero", "delicado",
-    "fresco", "limpio"
+  const suaves=contar(perfil,[
+    "suave","ligero","delicado","fresco","limpio"
   ]);
 
-  if (respuestas[3] === "Intensa") {
-    puntos += fuertes * 2;
-  } else if (respuestas[3] === "Suave") {
-    puntos += suaves * 2;
+  if (respuestas[3]==="Intensa") {
+    puntos+=fuertes*2;
+  } else if (respuestas[3]==="Suave") {
+    puntos+=suaves*2;
   } else {
-    puntos += 2;
+    puntos+=2;
   }
 
-  if (["Diario", "Oficina"].includes(respuestas[4])) {
-    puntos += suaves * 2;
+  if (["Diario","Oficina"].includes(respuestas[4])) {
+    puntos+=suaves*2;
   } else {
-    puntos += fuertes * 2;
+    puntos+=fuertes*2;
   }
 
   return puntos;
@@ -509,64 +573,59 @@ function mostrarResultado() {
   mostrar("final");
   mostrarChips("resumen");
 
-  const disponibles = catalogo
-    .filter(perfume => perfume[2] !== "");
+  const disponibles=catalogo.filter(perfume=>perfume[2]!=="");
 
-  const mejores = disponibles
-    .map((perfume, indice) => ({
+  const mejores=disponibles
+    .map((perfume,indice)=>({
       perfume,
       indice,
-      puntos: puntuar(perfume)
+      puntos:puntuar(perfume)
     }))
-    .sort((a, b) =>
-      b.puntos - a.puntos || a.indice - b.indice
-    )
-    .slice(0, 3);
+    .sort((a,b)=>b.puntos-a.puntos||a.indice-b.indice)
+    .slice(0,3);
 
-  const contenedor =
-    document.getElementById("recomendaciones");
-
+  const contenedor=document.getElementById("recomendaciones");
   contenedor.replaceChildren();
 
-  mejores.forEach((resultado, indice) => {
-    const perfume = resultado.perfume;
+  mejores.forEach((resultado,indice)=>{
+    const perfume=resultado.perfume;
+    const tarjeta=document.createElement("article");
+    tarjeta.className="tarjeta";
 
-    const tarjeta = document.createElement("article");
-    tarjeta.className = "tarjeta";
+    const titulo=document.createElement("h3");
+    titulo.textContent=`${indice+1}. ${perfume[0]}`;
 
-    const titulo = document.createElement("h3");
-    titulo.textContent =
-      `${indice + 1}. ${perfume[0]}`;
+    const meta=document.createElement("p");
+    meta.className="meta";
+    meta.textContent=`${perfume[1]} · ${perfume[2]}`;
 
-    const meta = document.createElement("p");
-    meta.className = "meta";
-    meta.textContent =
-      `${perfume[1]} · ${perfume[2]}`;
+    const descripcion=document.createElement("p");
+    descripcion.textContent=perfume[3];
 
-    const descripcion = document.createElement("p");
-    descripcion.textContent = perfume[3];
-
-    const motivo = document.createElement("p");
-    motivo.textContent =
-      "Esta fragancia presenta afinidad con " +
-      "las preferencias que seleccionaste " +
-      "durante tu experiencia olfativa.";
+    const motivo=document.createElement("p");
+    motivo.textContent=
+      "Esta fragancia presenta afinidad con las preferencias "+
+      "que seleccionaste durante tu experiencia olfativa.";
 
     tarjeta.appendChild(titulo);
     tarjeta.appendChild(meta);
     tarjeta.appendChild(descripcion);
     tarjeta.appendChild(motivo);
-
     contenedor.appendChild(tarjeta);
   });
 }
 
 function reiniciar() {
-  paso = 0;
-  respuestas = [];
+  paso=0;
+  respuestas=[];
+  clienteId="";
+  document.getElementById("formRegistro").reset();
+  document.getElementById("nacimiento").value="";
+  document.getElementById("autorizaCumple").checked=false;
+  document.getElementById("errorRegistro").textContent="";
+  document.getElementById("errorCumple").textContent="";
   mostrar("bienvenida");
 }
-
 </script>
 </body>
 </html>
