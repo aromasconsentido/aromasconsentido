@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aromas con Sentido</title>
+
 <style>
 :root {
   --marfil:#FFF8F0;
@@ -12,29 +13,41 @@
   --cafe:#421B12;
   --rosa:#F5C7C5;
 }
+
 * {box-sizing:border-box}
+
 body {
   margin:0;
   background:linear-gradient(135deg,#FFFDF9,#FFF0E2);
   color:var(--cafe);
   font-family:Arial,sans-serif;
 }
+
 main {
   max-width:780px;
   margin:auto;
   min-height:100vh;
   padding:30px 18px;
 }
+
 header {text-align:center;margin-bottom:22px}
-h1,h2,h3 {font-family:Georgia,serif;font-weight:normal}
+
+h1,h2,h3 {
+  font-family:Georgia,serif;
+  font-weight:normal;
+}
+
 h1 {
   font-size:clamp(23px,5vw,40px);
   color:#8B5A22;
   margin:0;
 }
+
 header p {font-size:11px;letter-spacing:3px}
+
 section {display:none}
 section.activa {display:block}
+
 .hero {
   text-align:center;
   padding:24px;
@@ -42,22 +55,30 @@ section.activa {display:block}
   background:#FFFDF9;
   border-radius:22px;
 }
+
 .hero img {
   width:min(240px,75%);
   height:auto;
   border-radius:50%;
 }
+
 .lema {
   text-align:center;
   color:#9A6A31;
   font:italic 20px Georgia,serif;
 }
-h2 {text-align:center;font-size:clamp(26px,5vw,38px)}
+
+h2 {
+  text-align:center;
+  font-size:clamp(26px,5vw,38px);
+}
+
 .descripcion {
   text-align:center;
   line-height:1.65;
   color:#79523E;
 }
+
 button {
   width:100%;
   padding:16px;
@@ -69,20 +90,30 @@ button {
   font-size:16px;
   cursor:pointer;
 }
-button:hover,button:focus-visible {background:#F5E0B9}
-button:disabled {opacity:.6;cursor:wait}
+
+button:hover,
+button:focus-visible {background:#F5E0B9}
+
+button:disabled {
+  opacity:.6;
+  cursor:wait;
+}
+
 .principal {
   background:var(--dorado);
   color:#211108;
   font-weight:bold;
 }
+
 .volver {background:transparent;border:0}
+
 .progreso {
   display:flex;
   justify-content:space-between;
   font-size:13px;
   color:#79523E;
 }
+
 .barra {
   height:5px;
   background:#EAD8C3;
@@ -90,19 +121,26 @@ button:disabled {opacity:.6;cursor:wait}
   border-radius:5px;
   overflow:hidden;
 }
-#avance {height:100%;background:var(--dorado)}
+
+#avance {
+  height:100%;
+  background:var(--dorado);
+}
+
 .chips {
   display:flex;
   gap:7px;
   flex-wrap:wrap;
   justify-content:center;
 }
+
 .chip {
   background:#F5E0D9;
   border-radius:30px;
   padding:7px 11px;
   font-size:12px;
 }
+
 .tarjeta {
   padding:18px;
   margin:15px 0;
@@ -110,9 +148,11 @@ button:disabled {opacity:.6;cursor:wait}
   background:#FFFDF9;
   border-radius:15px;
 }
+
 .tarjeta h3 {font-size:24px;margin:5px 0}
 .meta {color:#8B5A22;font-size:13px}
 .nota {font-size:12px;color:#79523E}
+
 .campo {
   display:block;
   width:100%;
@@ -121,7 +161,9 @@ button:disabled {opacity:.6;cursor:wait}
   border:1px solid #D6B782;
   border-radius:10px;
   font-size:16px;
+  background:white;
 }
+
 .consentimiento {
   display:flex;
   gap:10px;
@@ -129,10 +171,38 @@ button:disabled {opacity:.6;cursor:wait}
   line-height:1.5;
   margin:16px 0;
 }
-.consentimiento input {margin-top:5px;flex-shrink:0}
-.mensaje {font-size:14px;color:#79523E}
+
+.consentimiento input {
+  margin-top:5px;
+  flex-shrink:0;
+}
+
+.mensaje {
+  font-size:14px;
+  color:#79523E;
+}
+
+.cumple-icono {
+  text-align:center;
+  font-size:48px;
+  margin:15px 0;
+}
+
+.campos-cumple {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+@media(max-width:420px) {
+  .campos-cumple {
+    grid-template-columns:1fr;
+    gap:0;
+  }
+}
 </style>
 </head>
+
 <body>
 <main>
 
@@ -141,118 +211,251 @@ button:disabled {opacity:.6;cursor:wait}
   <p>TU IDENTIDAD OLFATIVA</p>
 </header>
 
+<!-- BIENVENIDA -->
+
 <section id="bienvenida" class="activa">
+
   <div class="hero">
     <img src="logo.jpeg" alt="Logo Aromas con Sentido">
   </div>
+
   <p class="lema">La esencia de ser tú</p>
+
   <h2>Descubre tu esencia</h2>
+
   <p class="descripcion">
     Encuentra tres fragancias de nuestro catálogo
     que conecten con tus preferencias.
   </p>
+
   <button class="principal" onclick="comenzar()">
     Comenzar experiencia
   </button>
+
 </section>
 
-<section id="registro">
-  <h2>Antes de comenzar</h2>
-  <p class="descripcion">
-    Cuéntanos cómo podemos llamarte y contactarte.
-  </p>
-  <form id="formRegistro" onsubmit="registrar(event)">
-    <label for="nombre">Nombre</label>
-    <input class="campo" id="nombre" name="nombre"
-      required maxlength="100" autocomplete="name">
+<!-- REGISTRO INICIAL -->
 
-    <label for="whatsapp">WhatsApp</label>
-    <input class="campo" id="whatsapp" name="whatsapp"
-      type="tel" required minlength="7" maxlength="20"
-      autocomplete="tel" placeholder="Ej. 3001234567">
+<section id="registro">
+
+  <h2>Antes de comenzar, queremos conocerte</h2>
+
+  <p class="descripcion">
+    Cada esencia cuenta una historia.
+    Cuéntanos un poco de ti para comenzar
+    a descubrir la tuya.
+  </p>
+
+  <form id="formRegistro" onsubmit="registrar(event)">
+
+    <label for="nombre">Tu nombre</label>
+    <input
+      class="campo"
+      id="nombre"
+      name="nombre"
+      required
+      maxlength="100"
+      autocomplete="name"
+      placeholder="Escribe tu nombre"
+    >
+
+    <label for="whatsapp">Tu número de WhatsApp</label>
+    <input
+      class="campo"
+      id="whatsapp"
+      name="whatsapp"
+      type="tel"
+      required
+      minlength="7"
+      maxlength="20"
+      autocomplete="tel"
+      placeholder="Ej. 3001234567"
+    >
+
+    <label for="edad">¿Cuál es tu rango de edad?</label>
+
+    <select class="campo" id="edad" name="edad" required>
+      <option value="">Selecciona tu rango de edad</option>
+      <option value="0-14">Menos de 15 años</option>
+      <option value="15-17">15 a 17 años</option>
+      <option value="18-24">18 a 24 años</option>
+      <option value="25-34">25 a 34 años</option>
+      <option value="35-44">35 a 44 años</option>
+      <option value="45+">45 años o más</option>
+    </select>
 
     <label class="consentimiento">
       <input id="autorizado" type="checkbox" required>
       <span>
-        Autorizo a Aromas con Sentido a almacenar mi
-        nombre y WhatsApp para gestionar esta experiencia
-        y contactarme sobre ella. Puedo solicitar la
-        eliminación de mis datos por los canales de
-        atención de la marca.
+        Autorizo a Aromas con Sentido a almacenar
+        mi nombre y WhatsApp para gestionar esta
+        experiencia y contactarme sobre ella.
+        Puedo solicitar la eliminación de mis datos
+        por los canales de atención de la marca.
       </span>
     </label>
 
     <p id="errorRegistro" class="mensaje" role="status"></p>
-    <button class="principal" id="botonRegistro" type="submit">
-      Continuar
+
+    <button
+      class="principal"
+      id="botonRegistro"
+      type="submit"
+    >
+      Comenzar mi experiencia
     </button>
+
   </form>
 </section>
 
+<!-- CUESTIONARIO -->
+
 <section id="cuestionario">
+
   <div class="progreso">
     <span id="pasoTexto"></span>
     <span id="porcentaje"></span>
   </div>
-  <div class="barra"><div id="avance"></div></div>
+
+  <div class="barra">
+    <div id="avance"></div>
+  </div>
+
   <div id="selecciones" class="chips"></div>
+
   <h2 id="pregunta"></h2>
+
   <div id="opciones"></div>
-  <button class="volver" onclick="volver()">← Volver</button>
+
+  <button class="volver" onclick="volver()">
+    ← Volver
+  </button>
+
 </section>
 
+<!-- RECOMENDACIONES -->
+
 <section id="final">
+
   <h2>Tus tres fragancias</h2>
+
   <p class="lema">La esencia de ser tú</p>
+
   <div id="resumen" class="chips"></div>
+
   <div id="recomendaciones"></div>
+
   <p class="nota">
     Los perfiles olfativos son orientativos.
     Algunas referencias requieren confirmación
     con el proveedor.
   </p>
-  <button class="principal" onclick="mostrar('cumpleanos')">
+
+  <button
+    class="principal"
+    onclick="mostrar('cumpleanos')"
+  >
     Continuar
   </button>
+
 </section>
+
+<!-- CUMPLEAÑOS -->
 
 <section id="cumpleanos">
-  <h2>¿Cuándo es tu cumpleaños?</h2>
+
+  <div class="cumple-icono">🎁</div>
+
+  <h2>¡Déjate sorprender en tu cumpleaños!</h2>
+
   <p class="descripcion">
-    Es opcional. Nos encantaría felicitarte en tu día especial.
+    En Aromas con Sentido creemos que cada persona
+    merece sentirse especial.
   </p>
-  <label for="nacimiento">Fecha de nacimiento</label>
-  <input class="campo" id="nacimiento" type="date">
 
-  <label class="consentimiento">
-    <input id="autorizaCumple" type="checkbox">
-    <span>
-      Autorizo guardar mi fecha de nacimiento y recibir
-      felicitaciones o detalles de cumpleaños a través
-      de mi WhatsApp.
-    </span>
-  </label>
+  <p class="descripcion">
+    Tu día es importante para nosotros.
+    Regálanos el día y mes de tu nacimiento
+    para que podamos recordarlo y sorprenderte
+    con un detalle especial. 🎁
+  </p>
 
-  <p id="errorCumple" class="mensaje" role="status"></p>
-  <button class="principal" id="botonCumple"
-    onclick="guardarCumpleanos()">Guardar y finalizar</button>
-  <button onclick="mostrar('gracias')">Omitir</button>
+  <form id="formCumple" onsubmit="guardarCumpleanos(event)">
+
+    <div class="campos-cumple">
+
+      <div>
+        <label for="dia">Día de nacimiento</label>
+
+        <select class="campo" id="dia" required>
+          <option value="">Selecciona el día</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="mes">Mes de nacimiento</label>
+
+        <select class="campo" id="mes" required>
+          <option value="">Selecciona el mes</option>
+          <option value="1">Enero</option>
+          <option value="2">Febrero</option>
+          <option value="3">Marzo</option>
+          <option value="4">Abril</option>
+          <option value="5">Mayo</option>
+          <option value="6">Junio</option>
+          <option value="7">Julio</option>
+          <option value="8">Agosto</option>
+          <option value="9">Septiembre</option>
+          <option value="10">Octubre</option>
+          <option value="11">Noviembre</option>
+          <option value="12">Diciembre</option>
+        </select>
+      </div>
+
+    </div>
+
+    <p id="errorCumple" class="mensaje" role="status"></p>
+
+    <button
+      class="principal"
+      id="botonCumple"
+      type="submit"
+    >
+      Guardar mi cumpleaños y finalizar
+    </button>
+
+  </form>
+
 </section>
 
+<!-- AGRADECIMIENTO -->
+
 <section id="gracias">
+
+  <div class="cumple-icono">✨</div>
+
   <h2>¡Gracias por vivir esta experiencia!</h2>
+
   <p class="lema">La esencia de ser tú</p>
+
   <p class="descripcion">
-    Esperamos que encuentres una fragancia que conecte contigo.
+    Nos encanta acompañarte a descubrir tu esencia.
+    Recuerda que cada aroma cuenta una historia
+    y la tuya apenas comienza.
   </p>
+
   <button class="principal" onclick="reiniciar()">
     Nueva experiencia
   </button>
+
 </section>
 
 </main>
 
 <script>
+
+/* CATÁLOGO DE PERFUMES */
+
 const catalogo = [
 ["Joy Of Living","ECO","Frutal cítrico dulce","Luminoso y jugoso"],
 ["Zadous","ECO","Ámbar especiado dulce","Cálido y envolvente"],
@@ -311,6 +514,8 @@ const catalogo = [
 ["Brillo Belleza","PREMIUM","Floral vainilla suave","Romántico y luminoso"]
 ];
 
+/* PREGUNTAS */
+
 const preguntas = [
   {
     titulo:"¿Qué tipo de fragancia buscas?",
@@ -342,6 +547,8 @@ let paso=0;
 let respuestas=[];
 let clienteId="";
 
+/* CONEXIÓN GOOGLE SHEETS */
+
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbzL9wucIeVzA8HE_ztjja6RIHm2b8nWchAiNmeGTmAleZRCq03VnNq6DIeUF60AHa-R/exec";
 
@@ -349,24 +556,41 @@ async function enviar(datos) {
   await fetch(SCRIPT_URL,{
     method:"POST",
     mode:"no-cors",
-    headers:{"Content-Type":"application/x-www-form-urlencoded"},
+    headers:{
+      "Content-Type":"application/x-www-form-urlencoded"
+    },
     body:new URLSearchParams(datos)
   });
 }
 
+/* REGISTRAR CLIENTE */
+
 async function registrar(event) {
   event.preventDefault();
+
   const nombre=document.getElementById("nombre").value.trim();
   const whatsapp=document.getElementById("whatsapp").value.trim();
+  const edad=document.getElementById("edad").value;
+  const autorizado=document.getElementById("autorizado").checked;
+
   const error=document.getElementById("errorRegistro");
   const boton=document.getElementById("botonRegistro");
 
   error.textContent="";
 
-  if (!nombre ||
-      !/^\+?[0-9\s()-]{7,20}$/.test(whatsapp) ||
-      !document.getElementById("autorizado").checked) {
-    error.textContent="Revisa el nombre, el WhatsApp y la autorización.";
+  const edadesValidas=[
+    "0-14","15-17","18-24",
+    "25-34","35-44","45+"
+  ];
+
+  if (
+    !nombre ||
+    !/^\+?[0-9\s()-]{7,20}$/.test(whatsapp) ||
+    !edadesValidas.includes(edad) ||
+    !autorizado
+  ) {
+    error.textContent=
+      "Completa tu nombre, WhatsApp, rango de edad y autorización.";
     return;
   }
 
@@ -376,68 +600,96 @@ async function registrar(event) {
   try {
     await enviar({
       accion:"registro",
-      clienteId,
-      nombre,
-      whatsapp,
+      clienteId:clienteId,
+      nombre:nombre,
+      whatsapp:whatsapp,
+      edad:edad,
       autorizado:"true"
     });
+
     paso=0;
     respuestas=[];
     mostrarPregunta();
+
   } catch(e) {
-    error.textContent="No pudimos enviar el registro. Revisa tu conexión.";
+    error.textContent=
+      "No pudimos enviar el registro. Revisa tu conexión.";
   } finally {
     boton.disabled=false;
   }
 }
 
-async function guardarCumpleanos() {
-  const nacimiento=document.getElementById("nacimiento").value;
-  const autoriza=document.getElementById("autorizaCumple").checked;
+/* OPCIONES DEL CUMPLEAÑOS */
+
+const selectorDia=document.getElementById("dia");
+
+for(let numero=1;numero<=31;numero++) {
+  const opcion=document.createElement("option");
+  opcion.value=String(numero);
+  opcion.textContent=String(numero);
+  selectorDia.appendChild(opcion);
+}
+
+/* GUARDAR CUMPLEAÑOS */
+
+async function guardarCumpleanos(event) {
+  event.preventDefault();
+
+  const dia=Number(document.getElementById("dia").value);
+  const mes=Number(document.getElementById("mes").value);
+
   const error=document.getElementById("errorCumple");
   const boton=document.getElementById("botonCumple");
 
   error.textContent="";
 
-  if (!nacimiento || !autoriza) {
-    error.textContent=
-      "Selecciona la fecha y autoriza su uso, o elige Omitir.";
-    return;
-  }
+  const fecha=new Date(Date.UTC(2000,mes-1,dia));
 
-  if (nacimiento>new Date().toISOString().slice(0,10)) {
-    error.textContent="La fecha no puede estar en el futuro.";
+  if (
+    !dia ||
+    !mes ||
+    fecha.getUTCDate()!==dia ||
+    fecha.getUTCMonth()!==mes-1
+  ) {
+    error.textContent=
+      "Selecciona un día y un mes válidos.";
     return;
   }
 
   boton.disabled=true;
+
   try {
     await enviar({
       accion:"cumpleanos",
-      clienteId,
-      nacimiento,
-      autorizaCumple:"true"
+      clienteId:clienteId,
+      dia:String(dia),
+      mes:String(mes)
     });
+
     mostrar("gracias");
+
   } catch(e) {
-    error.textContent="No pudimos enviar la fecha. Intenta de nuevo.";
+    error.textContent=
+      "No pudimos enviar el cumpleaños. Intenta de nuevo.";
   } finally {
     boton.disabled=false;
   }
 }
 
-function normal(texto) {
-  return (texto||"")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g,"");
-}
+/* NAVEGACIÓN */
 
 function mostrar(id) {
   document.querySelectorAll("main section").forEach(
     elemento=>elemento.classList.remove("activa")
   );
+
   document.getElementById(id).classList.add("activa");
+
+  window.scrollTo(0,0);
+}
+
+function comenzar() {
+  mostrar("registro");
 }
 
 function mostrarChips(id) {
@@ -452,12 +704,8 @@ function mostrarChips(id) {
   });
 }
 
-function comenzar() {
-  mostrar("registro");
-}
-
 function mostrarPregunta() {
-  if (paso>=preguntas.length) {
+  if(paso>=preguntas.length) {
     mostrarResultado();
     return;
   }
@@ -482,11 +730,13 @@ function mostrarPregunta() {
   preguntas[paso].opciones.forEach(opcion=>{
     const boton=document.createElement("button");
     boton.textContent=opcion;
+
     boton.onclick=()=>{
       respuestas[paso]=opcion;
       paso++;
       mostrarPregunta();
     };
+
     contenedor.appendChild(boton);
   });
 
@@ -494,13 +744,22 @@ function mostrarPregunta() {
 }
 
 function volver() {
-  if (paso===0) {
+  if(paso===0) {
     mostrar("registro");
   } else {
     paso--;
     respuestas=respuestas.slice(0,paso);
     mostrarPregunta();
   }
+}
+
+/* RECOMENDACIONES DE PERFUMES */
+
+function normal(texto) {
+  return (texto||"")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"");
 }
 
 const familias={
@@ -538,6 +797,7 @@ function contar(texto,palabras) {
 function puntuar(perfume) {
   const familia=normal(perfume[2]);
   const perfil=normal(perfume[2]+" "+perfume[3]);
+
   let puntos=0;
 
   puntos+=contar(familia,familias[respuestas[2]])*5;
@@ -545,22 +805,24 @@ function puntuar(perfume) {
   puntos+=contar(perfil,emociones[respuestas[5]])*2;
 
   const fuertes=contar(perfil,[
-    "intenso","profundo","cuero","especiado","ambar","nocturno"
+    "intenso","profundo","cuero",
+    "especiado","ambar","nocturno"
   ]);
 
   const suaves=contar(perfil,[
-    "suave","ligero","delicado","fresco","limpio"
+    "suave","ligero","delicado",
+    "fresco","limpio"
   ]);
 
-  if (respuestas[3]==="Intensa") {
+  if(respuestas[3]==="Intensa") {
     puntos+=fuertes*2;
-  } else if (respuestas[3]==="Suave") {
+  } else if(respuestas[3]==="Suave") {
     puntos+=suaves*2;
   } else {
     puntos+=2;
   }
 
-  if (["Diario","Oficina"].includes(respuestas[4])) {
+  if(["Diario","Oficina"].includes(respuestas[4])) {
     puntos+=suaves*2;
   } else {
     puntos+=fuertes*2;
@@ -573,7 +835,9 @@ function mostrarResultado() {
   mostrar("final");
   mostrarChips("resumen");
 
-  const disponibles=catalogo.filter(perfume=>perfume[2]!=="");
+  const disponibles=catalogo.filter(
+    perfume=>perfume[2]!==""
+  );
 
   const mejores=disponibles
     .map((perfume,indice)=>({
@@ -581,7 +845,9 @@ function mostrarResultado() {
       indice,
       puntos:puntuar(perfume)
     }))
-    .sort((a,b)=>b.puntos-a.puntos||a.indice-b.indice)
+    .sort((a,b)=>
+      b.puntos-a.puntos||a.indice-b.indice
+    )
     .slice(0,3);
 
   const contenedor=document.getElementById("recomendaciones");
@@ -589,6 +855,7 @@ function mostrarResultado() {
 
   mejores.forEach((resultado,indice)=>{
     const perfume=resultado.perfume;
+
     const tarjeta=document.createElement("article");
     tarjeta.className="tarjeta";
 
@@ -611,21 +878,27 @@ function mostrarResultado() {
     tarjeta.appendChild(meta);
     tarjeta.appendChild(descripcion);
     tarjeta.appendChild(motivo);
+
     contenedor.appendChild(tarjeta);
   });
 }
+
+/* NUEVA EXPERIENCIA */
 
 function reiniciar() {
   paso=0;
   respuestas=[];
   clienteId="";
+
   document.getElementById("formRegistro").reset();
-  document.getElementById("nacimiento").value="";
-  document.getElementById("autorizaCumple").checked=false;
+  document.getElementById("formCumple").reset();
+
   document.getElementById("errorRegistro").textContent="";
   document.getElementById("errorCumple").textContent="";
+
   mostrar("bienvenida");
 }
+
 </script>
 </body>
 </html>
