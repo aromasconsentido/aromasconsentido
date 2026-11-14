@@ -831,7 +831,9 @@ function puntuar(perfume) {
   return puntos;
 }
 
-function mostrarResultado() {
+/* RESULTADOS Y ENVÍO DE ESTADÍSTICAS */
+
+async function mostrarResultado() {
   mostrar("final");
   mostrarChips("resumen");
 
@@ -881,6 +883,60 @@ function mostrarResultado() {
 
     contenedor.appendChild(tarjeta);
   });
+
+  // Enviar respuestas a las columnas H hasta P.
+  // El Cliente ID permite actualizar la misma fila.
+
+  if (
+    !clienteId ||
+    respuestas.length!==6 ||
+    mejores.length!==3
+  ) {
+    console.error("Resultados incompletos");
+    return;
+  }
+
+  try {
+    await enviar({
+      accion:"resultados",
+      clienteId:clienteId,
+
+      // H - Tipo de fragancia
+      tipoFragancia:respuestas[0],
+
+      // I - Estilo
+      estilo:respuestas[1],
+
+      // J - Familia olfativa
+      familiaOlfativa:respuestas[2],
+
+      // K - Intensidad
+      intensidad:respuestas[3],
+
+      // L - Ocasión
+      ocasion:respuestas[4],
+
+      // M - Qué quiere transmitir
+      transmitir:respuestas[5],
+
+      // N - PF 1
+      pf1:mejores[0].perfume[0],
+
+      // O - PF 2
+      pf2:mejores[1].perfume[0],
+
+      // P - PF 3
+      pf3:mejores[2].perfume[0]
+    });
+
+    console.log("Solicitud de estadísticas enviada");
+
+  } catch(error) {
+    console.error(
+      "Error de red al enviar estadísticas:",
+      error
+    );
+  }
 }
 
 /* NUEVA EXPERIENCIA */
